@@ -684,5 +684,20 @@ vectorConfig:
     name: custom-config
     mountPath: /etc/vector/custom
     readOnly: false
+  # env -- Set environment variables for the vector-config sidecar container.
+  env: []
+    # - name: MY_VARIABLE
+    #   value: "my-value"
+    # - name: SECRET_VAR
+    #   valueFrom:
+    #     secretKeyRef:
+    #       name: my-secret
+  #       key: secret-key
+  # envFrom -- Define environment variables from Secrets or ConfigMaps for the vector-config sidecar container.
+  envFrom: []
+    # - configMapRef:
+    #     name: my-configmap
+    # - secretRef:
+  #     name: my-secret
 sinks:
   opensearch: {}
