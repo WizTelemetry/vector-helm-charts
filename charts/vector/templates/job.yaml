@@ -101,6 +101,7 @@ spec:
                             memory: {{ .Values.vectorConfig.resources.requests.memory }}
                           limits:
                             cpu: {{ .Values.vectorConfig.resources.limits.cpu }}
+                            memory: {{ .Values.vectorConfig.resources.limits.memory }}
                         {{- with .Values.vectorConfig.env }}
                         env:
                           {{- toYaml . | nindent 26 }}
@@ -109,6 +110,7 @@ spec:
                         envFrom:
                           {{- toYaml . | nindent 26 }}
                         {{- end }}
+              EOF
               {{- if (eq .Values.role "Agent") }}
               kubectl patch  daemonset {{  include "vector.fullname" . }} -n {{ include "vector.namespaceOverride" . }} --patch-file /tmp/patch.yaml
               {{- else if eq .Values.role "Aggregator" }}
